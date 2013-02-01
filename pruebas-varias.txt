@@ -1,0 +1,89 @@
+schtasks /create /sc minute /mo 1 /tn "Imagenes Locales" /tr "C:\xampp\php\php.exe c:\xampp\htdocs\videos\prueba.php"
+
+
+schtasks /create /sc minute /mo 1 /tn "Imagenes Locales" /tr "C:\xampp\php\php.exe prueba.php"
+
+190.111.83.88
+
+root
+
+irt2007
+
+echo date('m/d/Y', 1299446702);
+
+$timestamp = strtotime('22-09-2008');
+
+
+
+http://192.168.10.202/axis-cgi/jpg/image.cgi?resolution=640x480
+http://192.168.10.202/axis-cgi/jpg/image.cgi?resolution=640x480
+
+http://192.168.10.202/operator/image_test.shtml?nbr=0&camNo=1&squarepixel=0&resolution=320x240&compression=30&color=1&rotation=0&date=1&clock=1&text=0&textstring=LABORATORIO&textpos=top&duration=NaN&fps=20
+
+http://<servername>/axis-cgi/param.cgi?action=list&group=ImageSource.I0.Sensor.CaptureMode 
+Response example
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+// Configure el BaseURL en el URL de la cámara
+var BaseURL = "http://192.168.10.202/";
+
+// DisplayWidth y DisplayHeight especifican la anchura y altura con las que se visualiza la imagen.
+// Puede modificar estos valores para ampliar o reducir la imagen
+var DisplayWidth = "640";
+var DisplayHeight = "480";
+
+// Esta es la dirección del archivo que genera la imagen dentro de la propia cámara
+var File = "axis-cgi/jpg/image.cgi?resolution=640x480";
+// No hace falta cambios bajo este punto
+var output = "";
+  theDate = new Date();
+  output  = '<IMG SRC="';
+  output += BaseURL;
+  output += File;
+  output += '&dummy=' + theDate.getTime().toString(10);
+  output += '" HEIGHT="';
+  output += DisplayHeight;
+  output += '" WIDTH="';
+  output += DisplayWidth;
+  output += '" ALT="Camera Image">';
+document.write(output);
+</SCRIPT>
+
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+// Configure el BaseURL en el URL de la cámara
+var BaseURL = "http://192.168.10.202/";
+
+// DisplayWidth y DisplayHeight especifican la anchura y altura con las que se visualiza la imagen.
+// Puede modificar estos valores para ampliar o reducir la imagen
+var DisplayWidth = "640";
+var DisplayHeight = "480";
+
+// Esta es la dirección del archivo que genera la imagen dentro de la propia cámara
+var File = "axis-cgi/jpg/image.cgi?resolution=640x480";
+
+// Fuerce la actualización inmediata de la imagen
+var theTimer = setTimeout('reloadImage()', 1);
+
+function reloadImage()
+{
+  theDate = new Date();
+  var url = BaseURL;
+  url += File;
+  url += '&dummy=' + theDate.getTime().toString(10);
+  // El simulacro de arriba ejecuta un by-pass del cache de imagen del navegador
+  // Aquí cargamos la imagen
+  document.theImage.src = url;
+
+  // Recargar la imagen cada diez segundos (1000 ms)
+  theTimer = setTimeout('reloadImage()', 10000);
+}
+document.write('<img name="theImage" src="" height="' + DisplayHeight + '"');
+document.write('width="' + DisplayWidth + '" alt="Live image">');
+</SCRIPT>
+
+
